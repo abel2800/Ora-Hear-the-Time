@@ -4,6 +4,10 @@ on:
   workflow_dispatch:
   push:
     branches: [main]
+    tags: ['v*']
+
+permissions:
+  contents: write
 
 jobs:
   build:
@@ -16,11 +20,42 @@ jobs:
           channel: stable
           cache: true
 
-      - run: flutter pub get
+      - name: Accept Android licenses
+        run: yes | flutter doctor --android-licenses || true
 
+      - run: flutter pub get
       - run: flutter build apk --release
+
+      - name: Prepare release APK
+        run: cp build/app/outputs/flutter-apk/app-release.apk Ora-v1.5.0.apk
 
       - uses: actions/upload-artifact@v4
         with:
           name: ora-release-apk
-          path: build/app/outputs/flutter-apk/app-release.apk
+          path: Ora-v1.5.0.apk
+
+      - name: Publish GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: v1.5.0
+          name: Ora v1.5.0
+          body: |
+            ## Ora v1.5.0
+
+            Voice clock for blind and visually impaired users.
+
+            ### Install
+            1. Download **Ora-v1.5.0.apk** below
+            2. Open on your Android phone
+            3. Allow install from unknown sources if prompted
+            4. Grant notification and battery optimization permissions
+
+            ### Features
+            - Tap anywhere to hear the time
+            - Auto announcements every 15, 30, or 60 minutes
+            - Repeat count (1–5 times)
+            - Quiet hours
+            - 12 languages including Amharic
+            - Male / female voice selection
+          files: Ora-v1.5.0.apk
+          make_latest: true

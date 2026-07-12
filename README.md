@@ -4,6 +4,15 @@
 
 Version **1.5.0**
 
+## Download APK
+
+[![Download APK](https://img.shields.io/github/v/release/abel2800/Ora-Hear-the-Time?label=Download%20APK&style=for-the-badge)](https://github.com/abel2800/Ora-Hear-the-Time/releases/latest)
+
+1. Open the **[Releases](https://github.com/abel2800/Ora-Hear-the-Time/releases)** page
+2. Download **Ora-v1.5.0.apk**
+3. Install on your Android phone (enable "Install unknown apps" if prompted)
+4. Allow **notifications** and **battery optimization** when the app asks
+
 ---
 
 ## Features
