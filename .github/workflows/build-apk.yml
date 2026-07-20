@@ -24,31 +24,38 @@ jobs:
         run: yes | flutter doctor --android-licenses || true
 
       - run: flutter pub get
+
+      # Universal APK includes 32-bit + 64-bit for older phones
       - run: flutter build apk --release
 
       - name: Prepare release APK
-        run: cp build/app/outputs/flutter-apk/app-release.apk Ora-v1.5.0.apk
+        run: cp build/app/outputs/flutter-apk/app-release.apk Ora-v1.5.1.apk
 
       - uses: actions/upload-artifact@v4
         with:
           name: ora-release-apk
-          path: Ora-v1.5.0.apk
+          path: Ora-v1.5.1.apk
 
       - name: Publish GitHub Release
         uses: softprops/action-gh-release@v2
         with:
-          tag_name: v1.5.0
-          name: Ora v1.5.0
+          tag_name: v1.5.1
+          name: Ora v1.5.1
           body: |
-            ## Ora v1.5.0
+            ## Ora v1.5.1
 
             Voice clock for blind and visually impaired users.
 
+            ### Compatibility
+            - Supports **Android 5.0+** (API 21)
+            - Includes 32-bit and 64-bit builds for older phones
+
             ### Install
-            1. Download **Ora-v1.5.0.apk** below
-            2. Open on your Android phone
-            3. Allow install from unknown sources if prompted
-            4. Grant notification and battery optimization permissions
+            1. Uninstall any older Talk Time / Ora version first if install fails
+            2. Download **Ora-v1.5.1.apk** below
+            3. Open on your Android phone
+            4. Allow install from unknown sources if prompted
+            5. Grant notification and battery optimization permissions
 
             ### Features
             - Tap anywhere to hear the time
@@ -57,5 +64,5 @@ jobs:
             - Quiet hours
             - 12 languages including Amharic
             - Male / female voice selection
-          files: Ora-v1.5.0.apk
+          files: Ora-v1.5.1.apk
           make_latest: true

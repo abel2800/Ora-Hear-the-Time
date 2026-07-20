@@ -1,6 +1,6 @@
 abstract final class AppConstants {
   static const String appName = 'Ora';
-  static const String appVersion = '1.5.0';
+  static const String appVersion = '1.5.1';
 
   static const Duration clockTickInterval = Duration(seconds: 1);
   static const Duration announcementPollInterval = Duration(seconds: 5);

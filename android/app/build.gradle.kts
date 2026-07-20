@@ -21,13 +21,17 @@ android {
 
     defaultConfig {
         applicationId = "com.timetalk.timetalk"
-        minSdk = flutter.minSdkVersion  // Required for flutter_local_notifications
+        // Android 5.0+ — Flutter default is 24; lower for older/low-end phones
+        minSdk = 21
         targetSdk = flutter.targetSdkVersion
         versionCode = flutter.versionCode
         versionName = flutter.versionName
-        
-        // Required for flutter_local_notifications
         multiDexEnabled = true
+
+        // Include 32-bit + 64-bit so older ARM phones can install
+        ndk {
+            abiFilters += listOf("armeabi-v7a", "arm64-v8a", "x86", "x86_64")
+        }
     }
 
     buildTypes {

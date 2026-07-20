@@ -31,6 +31,7 @@
         android:icon="@mipmap/ic_launcher"
         android:enableOnBackInvokedCallback="true"
         android:allowBackup="true"
+        android:extractNativeLibs="true"
         tools:targetApi="tiramisu">
         
         <activity
